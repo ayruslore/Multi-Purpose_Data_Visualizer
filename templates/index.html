@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang = 'en'>
+
+  <head>
+  </head>
+
+  <body>
+    <div style = "text-align:center"><b> International Instituite Of Information Technology - BANGALORE </b></div>
+    <div style = "text-align:center"><b> Course : DATA VISUALIZATION </b></div>
+    <div style = "text-align:center"><b> ASSIGNMENT - 1 </b></div>
+    <div style = "text-align:right"><b>Author : SURYA SRIKAR PERURI - IMT2015042 </b></div>
+    <br>
+    <p> Data Set : 2D grid, of longitude-latitude , of Indian Ocean, obtained from the Live Server Access of the Indian National Center for Ocean Information Services (<a href = "http://las.incois.gov.in/las">INCOIS</a>).</p>
+
+    <div><b>Fields for Scalar Visualization : </b> 2D and 3D scalar field visualization of the multifield scalar field data <button onclick = "scalardatavisualization()"> Select Scalar Visualization</button></div>
+    Available files :
+
+    {% for file_name in files['s'] %}
+        <div>&emsp; &emsp; {{ file_name }} &emsp; </div>
+    {% endfor %}
+
+    <br><br>
+
+    <div><b>Fields for Vector Visualization : </b> 2D vector field visualization of momentum vector data <button onclick = "vectordatavisualization()">Select Vector Visualization</button></div>
+    Available files :
+
+    {% for file_name in files['v'] %}
+        <div>&emsp; &emsp; Vector of '{{ file_name[0] }}' and '{{ file_name[1] }}' &emsp; </div>
+    {% endfor %}
+
+    <br>
+
+    <p id = "Scalar-Option-data"; style = "display:none">
+      <td>Scalar files &emsp;
+        <select id = "scalar_file_name">
+        {% for file_name in files['s'] %}
+            <option value = '{{ file_name }}'>{{ file_name }}</option>
+        {% endfor %}
+      </select></td>
+      &emsp;
+      <td>Type of interpolation Used &emsp;
+        <select id = "scalar_interp">
+        {% for d in scalaroptions['interp'] %}
+            <option value = '{{ d }}'>{{ d }}</option>
+        {% endfor %}
+      </select></td>
+      &emsp;
+      <td>Dimension of the plot &emsp;
+        <select id = "dimension">
+        {% for d in scalaroptions['dim'] %}
+            <option value = '{{ d }}'>{{ d }}</option>
+        {% endfor %}
+      </select></td>
+      &emsp;
+      <td>Color Map for the plot &emsp;
+        <select id = "scalar_cmap">
+        {% for d in scalaroptions['cmaps'] %}
+            <option value = '{{ d }}'>{{ d }}</option>
+        {% endfor %}
+      </select></td>
+      &emsp; &emsp; &emsp;
+      <button onclick = "ScalarVisualizeTheData()"> Show Plot</button>
+    </p>
+
+    <p id = "Vector-Option-data"; style = "display:none">
+      <td>Vector files &emsp;
+        <select id = "vector_file_name">
+        {% for file_name in files['v'] %}
+            <option value = '{{ file_name }}'>Vector of '{{ file_name[0] }}' and '{{ file_name[1] }}'</option>
+        {% endfor %}
+      </select></td>
+      &emsp;
+      <td>Type of Plot &emsp;
+        <select id = "vector_plots">
+        {% for p in vectoroptions['plots'] %}
+            <option value = '{{ p }}'>{{ p }}</option>
+        {% endfor %}
+      </select></td>
+      &emsp;
+      <td>Color Map for the plot &emsp;
+        <select id = "vector_cmap">
+        {% for d in vectoroptions['cmaps'] %}
+            <option value = '{{ d }}'>{{ d }}</option>
+        {% endfor %}
+      </select></td>
+      &emsp; &emsp; &emsp;
+      <button onclick = "VectorVisualizeTheData()"> Show Plot</button>
+    </p>
+    <script type = "text/javascript">
+      function scalardatavisualization(){
+        document.getElementById('Scalar-Option-data').style.display = "block";
+        document.getElementById('Vector-Option-data').style.display = "none";
+      }
+
+      function vectordatavisualization(){
+        document.getElementById('Vector-Option-data').style.display = "block";
+        document.getElementById('Scalar-Option-data').style.display = "none";
+      }
+
+      function ScalarVisualizeTheData(){
+        console.log("Called!!");
+        var selector4 = document.getElementById('scalar_file_name');
+        var filename = selector4[selector4.selectedIndex].value;
+        var selector1 = document.getElementById('scalar_cmap');
+        var cmap = selector1[selector1.selectedIndex].value;
+        var selector2 = document.getElementById('scalar_interp');
+        var contourval = selector2[selector2.selectedIndex].value;
+        var selector3 = document.getElementById('dimension');
+        var dim = selector3[selector3.selectedIndex].value;
+
+        console.log(contourval);
+        console.log(dim);
+        console.log(filename);
+        console.log(cmap);
+
+        window.location.href = 'http://0.0.0.0:5000/scalar_visualize/' + filename + '/' + contourval + '/' + dim + '/' + cmap;
+      }
+
+      function VectorVisualizeTheData(){
+        console.log("called");
+        var selector1 = document.getElementById('vector_file_name');
+        var filename = selector1[selector1.selectedIndex].value;
+        var selector2 = document.getElementById('vector_plots');
+        var plottype = selector2[selector2.selectedIndex].value;
+        var selector3 = document.getElementById('vector_cmap');
+        var cmap = selector3[selector3.selectedIndex].value;
+
+        console.log(filename);
+        console.log(plottype);
+        console.log(cmap);
+
+        window.location.href = 'http://0.0.0.0:5000/vector_visualize/' + filename + '/' + plottype + '/' + cmap;
+      }
+
+    </script>
+
+  </body>
+
+</html>
