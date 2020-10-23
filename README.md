@@ -1,6 +1,6 @@
-# Data_Visualization
+# Data Visualization
 
-- Data Visualizer.
+- Multi-Purpose Data Visualizer.
 
 - Data sets are taken from INCOIS website. Link to the website : incois.gov.in/portal/index.jsp
 
