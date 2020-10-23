@@ -67,7 +67,7 @@ def mainfunction():
 
 app = Flask(__name__)
 
-@app.route('/IMT2015042_Assignment-1')
+@app.route('/IMT2015042_Project')
 def AssignmentMainPage():
     global scalar_files, vector_files, colormaps
     data = { 's': scalar_files, 'v': vector_files }

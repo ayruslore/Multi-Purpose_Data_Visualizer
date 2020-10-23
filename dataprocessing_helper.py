@@ -8,7 +8,7 @@ def PerformBilinearInterpolation(matrix_data, num, badflag):
     new_long_data = {}
     new_longs = list(matrix_data.columns)
     new_long_keys = []
-    for index, row in matrix_data.iterrows():
+    for _, row in matrix_data.iterrows():
         row = list(row)
         for j in range( len(row) - 1 ):
             newlongs = np.linspace( float(longs[j]), float(longs[j+1]), num, endpoint = False )
@@ -44,7 +44,7 @@ def PerformBilinearInterpolation(matrix_data, num, badflag):
         i += 1
     data = {'long' : [], 'lat' : [], 'value':[]}
     i = 0
-    for index, row in new_matrix_data.iterrows():
+    for _, row in new_matrix_data.iterrows():
         row = list(row)
         for j in range(len(row)):
             if badflag not in row[j]:
@@ -54,7 +54,7 @@ def PerformBilinearInterpolation(matrix_data, num, badflag):
         i += 1
     new_matrix_data = new_matrix_data.transpose()
     i = 0
-    for index, row in new_matrix_data.iterrows():
+    for _, row in new_matrix_data.iterrows():
         row = list(row)
         for j in range(len(row)-1):
             if badflag not in row[j] and badflag not in row[j+1]:
@@ -76,7 +76,7 @@ def MarchingSquares(data, values, badflag):
     for val in values:
         result = []
         binary_data = []
-        for index, row in data.iterrows():
+        for _, row in data.iterrows():
             row = list(row)
             bindata = []
             for j in range(len(row)):
@@ -124,7 +124,7 @@ def PerformBicubicInterpolation( matrix_data, num, badflag ):
     new_long_data = {}
     new_longs = list(matrix_data.columns)
     new_long_keys = []
-    for index, row in matrix_data.iterrows():
+    for _, row in matrix_data.iterrows():
         row = list(row)
         for j in range( len(row) - 1 ):
             newlongs = np.linspace( float(longs[j]), float(longs[j+1]), num, endpoint = False )
@@ -160,7 +160,7 @@ def PerformBicubicInterpolation( matrix_data, num, badflag ):
         i += 1
     data = {'long' : [], 'lat' : [], 'value':[]}
     i = 0
-    for index, row in new_matrix_data.iterrows():
+    for _, row in new_matrix_data.iterrows():
         row = list(row)
         for j in range(len(row)):
             if badflag not in row[j]:
@@ -170,7 +170,7 @@ def PerformBicubicInterpolation( matrix_data, num, badflag ):
         i += 1
     new_matrix_data = new_matrix_data.transpose()
     i = 0
-    for index, row in new_matrix_data.iterrows():
+    for _, row in new_matrix_data.iterrows():
         row = list(row)
         for j in range(len(row)-1):
             if badflag not in row[j] and badflag not in row[j+1]:
