@@ -8,6 +8,8 @@
 
 - Command to run the data visualization server - ```python3 visualization.py```
 
+- Access the main page of the project on the following route - ```http://0.0.0.0:5000/IMT2015042_Project or http://localhost:5000/IMT2015042_Project```
+
 - Packages Required for running the Project :
     - flask
     - numpy
