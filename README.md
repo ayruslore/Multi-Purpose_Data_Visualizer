@@ -8,6 +8,13 @@
 
 - Command to run the data visualization server - ```python3 visualization.py```
 
+- Packages Required for running the Project :
+    - flask
+    - numpy
+    - matplotlib
+    - pandas
+    - scipy
+
 - Data and Algorithms Used : 
     - Data Dimension : 2D & 3D
     - Data Type : Scalar and Vector Data
